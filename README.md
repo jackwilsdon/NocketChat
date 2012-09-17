@@ -8,7 +8,7 @@ To use NocketChat, ensure you have Socket.io installed in your working directory
 
 Where did the name 'NocketChat' come from?
 ------------------------------------------
-`Node + Socket + Chat = NocketChat`; NodeSocketChat.
+````Node + Socket + Chat = NocketChat (NodeSocketChat)````
 
 License
 -------
