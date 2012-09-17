@@ -88,7 +88,12 @@ $(document).ready(function() {
 	});
 	
 	// When connection fails, disable the input and set status
-	// (this doesn't seem to work)
+	socket.on('error', function() {
+		input.disable();
+		$(status).text(messages["error"]);
+	});
+	
+	//
 	socket.on('connect_failed', function() {
 		input.disable();
 		$(status).text(messages["error"]);
