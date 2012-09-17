@@ -31,9 +31,10 @@ $(document).ready(function() {
 	
 	// Status messages
 	var messages = {
-		"error": "Unable to connect to server!",
+		"error": "Connection lost",
 		"user": "Username: ",
-		"other": "..? What just happened?"
+		"other": "..? What just happened?", // Unused
+		"dave": "Access: Denied" // Upcoming feature support
 	};
 	
 	// On server connection
@@ -106,6 +107,11 @@ $(document).ready(function() {
 	// When a message is sent, add it to the message logs
 	socket.on('message', function (data) {
 		content.append("<p><b>"+data['user']+"</b> @ "+data['date']+": "+data['msg']+"</p>");
+	});
+	
+	// Upcoming feature support
+	socket.on('banned', function (data) {
+		$(status).text(messages['dave']);
 	});
 	
 });
