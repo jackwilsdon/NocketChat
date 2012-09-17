@@ -25,3 +25,11 @@ Node.js License
 http://nodejs.org/
 
 https://github.com/joyent/node/blob/master/LICENSE
+
+jQuery License
+==============
+The MIT License is simple and easy to understand and it places almost no restrictions on what you can do with a jQuery project.
+
+You are free to use a jQuery project in commercial projects as long as the copyright header is left intact.
+
+http://en.wikipedia.org/wiki/MIT_License
