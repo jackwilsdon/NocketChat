@@ -28,6 +28,7 @@ $(document).ready(function() {
 	var content = $("#messages");
 	var input = $("#input");
 	var status = $("#status");
+	var sidebar = $("#sidebar");
 	
 	// Status messages
 	var messages = {
@@ -37,63 +38,72 @@ $(document).ready(function() {
 		"dave": "Access: Denied" // Upcoming feature support
 	};
 	
+	// Keep track of the connection
+	var connected = false;
+	
 	// On server connection
 	socket.on('connect', function () {
 		
-		// Enable input and set status
-		input.enable();
-		$(status).html(messages["user"]);
-		
-		// When the enter key is pressed (send message)
-		input.keyup(function(event) {
-		
-			if(event.keyCode == 13) {
-				
-				// If the textbox isn't empty
-				if ($.trim(input.val())) {
-				
-					// Set username to field content
-					var username = input.val();
+		if (!connected) {
+			connected = true;
+			// Enable input and set status
+			input.enable();
+			$(status).text(messages["user"]);
+			
+			// When the enter key is pressed (send message)
+			input.keyup(function(event) {
+			
+				if(event.keyCode == 13) {
 					
-					// Remove keybinding so it can be re-defined
-					// (there's probably a better way than unbinding and rebinding)
-					input.unbind('keyup');
+					// If the textbox isn't empty
+					if ($.trim(input.val())) {
 					
-					// Send 'set_nick' message to server with nickname
-					socket.emit("set_nick", {"nick": username});
-					
-					// Empty input and set status text
-					$(input).val(null);
-					$(status).text(username+":");
-					
-					// Re-define keybinding to enter key
-					input.keyup(function(event) {
-						if (event.keyCode == 13) {
-							
-							// If textbox isn't empty
-							if ($.trim(input.val())) {
-							
-								// Send message to server and empty textbox
-								socket.send(input.val());
-								input.val(null);
+						// Set username to field content
+						var username = input.val();
+						
+						// Remove keybinding so it can be re-defined
+						// (there's probably a better way than unbinding and rebinding)
+						input.unbind('keyup');
+						
+						// Send 'set_nick' message to server with nickname
+						socket.emit("set_nick", {"nick": username});
+						
+						// Empty input and set status text
+						$(input).val(null);
+						$(status).text(username+":");
+						
+						// Re-define keybinding to enter key
+						input.keyup(function(event) {
+							if (event.keyCode == 13) {
+								
+								// If textbox isn't empty
+								if ($.trim(input.val())) {
+								
+									// Send message to server and empty textbox
+									socket.send(input.val());
+									input.val(null);
+								}
 							}
-						}
-					});
+						});
+						
+					}
 					
 				}
 				
-			}
-			
-		});
+			});
+		} else {
+			input.disable();
+			$(status).text(messages["error"]);
+		}
 	});
 	
-	// When connection fails, disable the input and set status
+	// When error occurrs, disable the input and set status
 	socket.on('error', function() {
 		input.disable();
 		$(status).text(messages["error"]);
 	});
 	
-	//
+	// When connection fails, disable the input and set status
 	socket.on('connect_failed', function() {
 		input.disable();
 		$(status).text(messages["error"]);
@@ -112,6 +122,13 @@ $(document).ready(function() {
 	// When a message is sent, add it to the message logs
 	socket.on('message', function (data) {
 		content.append("<p><b>"+data['user']+"</b> @ "+data['date']+": "+data['msg']+"</p>");
+		content.scrollTop(content.height());
+	});
+	
+	// When a message is sent, add it to the message logs
+	socket.on('botmessage', function (data) {
+		content.append("<p><b>"+data['user']+": "+data['msg']+"</b></p>");
+		content.scrollTop(content.height());
 	});
 	
 	// Upcoming feature support
