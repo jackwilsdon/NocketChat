@@ -34,7 +34,7 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareA
 You are allowed to modify and distribute this freely, as long as it is released under the same Creative Commons License, and gives credit to it's original author (me).  
 All other licenses can be found inside **LICENSE.md**.
 	
-    [1]: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en
-    [2]: http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png
-    [3]: http://nodejs.org
-    [4]: http://github.com/jackwilsdon/NocketChat/issues
+   [1]: http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en
+   [2]: http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png
+   [3]: http://nodejs.org
+   [4]: http://github.com/jackwilsdon/NocketChat/issues
