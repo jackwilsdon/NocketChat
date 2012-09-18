@@ -14,7 +14,7 @@ You should have read the above info to help you get started. If you don't unders
 2. Pull this repo to a folder using the command;  
 `git clone http://github.com/jackwilsdon/NocketChat.git`
 3. Ensure you are inside the `NocketChat` directory. There should be files such as `server.js` and `index.html`.
-4. Run the following command to install `socket.io` inside the `NocketChat` folder;
+4. Run the following command to install `socket.io` inside the `NocketChat` folder;  
 `npm install socket.io`
 5. Copy all of the files (apart from `node_modules` and `server.js`) onto a webserver.
 6. Modify `js/client.js` to point towards the server you are hosting the chat server on (`var socket = io.connect('http://host:port');`)
