@@ -7,7 +7,7 @@
 		<!-- Styling for form fields and message box -->
 		<style>
 		* {
-			font-family:tahoma;
+			font-family:"Tahoma", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 			font-size:12px;
 			padding:0px;
 			margin:0px;
@@ -23,10 +23,16 @@
 			line-height:18px;
 		}
 		
-		div {
+		#fields, #messages {
 			width:500px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		#container {
 			margin-left:auto;
 			margin-right:auto;
+			width:700px;
 		}
 		
 		#messages {
@@ -35,8 +41,9 @@
 			border-radius:5px;
 			border:1px solid #CCC;
 			margin-top:10px;
-			min-height: 160px;
+			height: 160px;
 			word-wrap: break-word;
+			overflow: auto;
 		}
 		
 		#input {
@@ -56,17 +63,20 @@
 		</style>
 	</head>
 	<body>
-	
-		<!-- Header -->
-		<h1>NocketChat</h1>
-	
-		<!-- Chat history -->
-		<div id="messages"></div>
-	
-		<!-- Status and input -->
-		<div>
-			<span id="status">Connecting...</span>
-			<input type="text" id="input" disabled="disabled" />
+		<div id="container">
+			
+			<!-- Header -->
+			<h1>NocketChat</h1>
+		
+			<!-- Chat history -->
+			<div id="messages"></div>
+		
+			<!-- Status and input -->
+			<div id="fields">
+				<span id="status">Connecting...</span>
+				<input type="text" id="input" disabled="disabled" />
+			</div>
+		
 		</div>
 		
 		<!-- External scripts -->
